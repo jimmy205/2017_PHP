@@ -2,8 +2,26 @@
 if (isset($_GET['x'])) {
     $x = $_GET['x'];
     $y = $_GET['y'];
-    $r = $x + $y;
+    $Operator = $_GET['selected'];
+    //$r = $x + $y;
     // echo $x + $y= $r;
+    //$sel="name:selected";
+
+
+    if ($Operator == "plus") {
+        $r = $x + $y;
+    } else if ($Operator == 'minus') {
+        $r = $x - $y;
+    } else if ($Operator == 'times') {
+        $r = $x * $y;
+    } else if ($Operator == 'divided' && $x % $y != 0) {
+        $r = $x / $y ;
+        $re = $x % $y ;
+
+        $r = floor($r) . "... ..." . $re;
+    } else {
+        $r = $x / $y ;
+    }
 }
 
 
@@ -13,11 +31,11 @@ if (isset($_GET['x'])) {
 <form>
 
     <input type="text" name="x" id="x" value="<?php echo $x ?>"></input>
-    <select>
-        <option>+</option>
-        <option>-</option>
-        <option>x</option>
-        <option>/</option>
+    <select name="selected" >
+        <option value="plus">+</option>
+        <option value="minus">-</option>
+        <option value="times">>x</option>
+        <option value="divided">/</option>
     </select>
     <input type="text" name="y" id="y" value="<?php echo $y ?>"></<input>
 <input type="submit" id="btn" value="=" </input>
@@ -25,14 +43,16 @@ if (isset($_GET['x'])) {
 
 </form>
 
-<input type="button" value="script" onclick="cal()"/>
-
-<input type="text" name="x" id="xx"></input>
-
-<script>
-
-        function cal() {
-             var x=document.getElementById("x").value;
-            alert(x);
-        }
-</script>
+<!--<input type="button" value="script" onclick="cal()"/>-->
+<!---->
+<!--<input type="text" name="x" id="xx"></input>-->
+<!---->
+<!--<script>-->
+<!---->
+<!--        function cal() {-->
+<!--             var x=document.getElementById("x").value;-->
+<!--            alert(x);-->
+<!--        }-->
+<!---->
+<!---->
+<!--</script>-->
