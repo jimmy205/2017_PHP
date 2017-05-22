@@ -32,10 +32,10 @@ if (isset($_GET['x'])) {
 
     <input type="text" name="x" id="x" value="<?php echo $x ?>"></input>
     <select name="selected" >
-        <option value="plus">+</option>
-        <option value="minus">-</option>
-        <option value="times">>x</option>
-        <option value="divided">/</option>
+        <option value="plus" <?php if ($Operator=="plus"){echo "selected";}?>>+</option>
+        <option value="minus" <?php if ($Operator=="minus"){echo "selected";}?>>-</option>
+        <option value="times" <?php if ($Operator=="times"){echo "selected";}?>>x</option>
+        <option value="divided" <?php if ($Operator=="divided"){echo "selected";}?>>/</option>
     </select>
     <input type="text" name="y" id="y" value="<?php echo $y ?>"></<input>
 <input type="submit" id="btn" value="=" </input>
