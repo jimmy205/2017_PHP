@@ -12,7 +12,8 @@ $sql = "select * from member";
 $res = $db->query($sql);
 ?>
 
-<a href="170531_addmember.php" > New </a>
+<a href="170531_addmember.php" > New </a> <br>
+<a href="login.php">login</a>
 <hr>
 <table width="50%" border="1">
     <tr>
