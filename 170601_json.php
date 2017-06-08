@@ -1,21 +1,28 @@
 <?php
-include 'sql2.php';
+include 'sql3.php';
 $pdo = NEW PDO($dsn,$user,$password,$opt);
 
 
-$sql = "insert into moutain (mnumber,mname,mlevel,manager,mentrance) VALUES (?,?,?,?,?)";
+$sql = "insert into gyminfo (GymId,GName,OperationTel,Address,GymFuncList,Photo1,LatLng) VALUES (?,?,?,?,?,?,?)";
 
- $json = file_get_contents("http://data.coa.gov.tw/Service/OpenData/DataFileService.aspx?UnitId=102");
+//,GName,OpenrationTel,Address,GymFuncList,Photo1,LatLng
+//,?,?,?,?,?,?
+
+ $json = file_get_contents("https://iplay.sa.gov.tw/api/GymSearchAllList?\$format=application/json;odata.metadata=none");
 
  $root = json_decode($json);
+ //var_dump($root);
 
  foreach ($root as $row){
 
-     $mnumber = $row->number;
-     $mname = $row->name;
-     $mlevel = $row->level;
-     $manager = $row->manager;
-     $mentrance = $row->entrance;
+     $GymId = $row->GymID;
+     $GName = $row->Name;
+     $OperationTel = $row->OperationTel;
+     $Address = $row->Address;
+     $GymFuncList = $row->GymFuncList;
+     $Photo1 = $row->Photo1;
+     $LatLng = $row->LatLng;
 
-     $pdo->prepare($sql) ->execute([$mnumber,$mname,$mlevel,$manager,$mentrance]);
+     $pdo->prepare($sql) ->execute([$GymId,$GName,$OperationTel,$Address,$GymFuncList,$Photo1,$LatLng]);
+     //,$GName,$OpenrationTel,$Address,$GymFuncList,$Photo1,$LatLng
  }
